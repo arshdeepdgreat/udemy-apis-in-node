@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/arshdeepdgreat/udemy-apis-in-node/issues"
   },
-  "homepage": "https://github.com/arshdeepdgreat/udemy-apis-in-node#readme"
+  "homepage": "https://github.com/arshdeepdgreat/udemy-apis-in-node#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }
