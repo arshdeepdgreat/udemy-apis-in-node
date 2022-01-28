@@ -5,5 +5,5 @@ app.get("/",function(req,res){
 })
 
 app.listen(3000,function(){
-    console.log("port 3000")
+    console.log("server at port 3000")
 })
