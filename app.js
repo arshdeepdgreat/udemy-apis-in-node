@@ -10,7 +10,7 @@ app.get("/",function(req,res){
         console.log(response.statusCode);
         response.on("data",function(data){
             const weatherData=JSON.parse(data)
-            console.log(weatherData)
+            console.log(weatherData.main.temp)
         })
     })
     res.send("Hello")
