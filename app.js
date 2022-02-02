@@ -10,8 +10,14 @@ app.get("/",function(req,res){
         console.log(response.statusCode);
         response.on("data",function(data){
             const weatherData=JSON.parse(data)
-            console.log(weatherData.weather[0].description)
-            res.send("The temp is "+ weatherData.main.temp+" degrees Celcius <br> The description is "+weatherData.weather[0].description)
+            const icon=weatherData.weather[0].icon
+            const imgp="http://openweathermap.org/img/wn/"+icon+"@2x.png";
+            
+            res.write("<p>The temp is "+ weatherData.main.temp+" degrees Celcius <br></p>");
+            res.write("<p>The description is "+weatherData.weather[0].description+"</p>");
+            res.write("<img src="+imgp+">");
+
+            res.send()
         })
     })
 })
