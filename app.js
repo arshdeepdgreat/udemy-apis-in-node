@@ -1,11 +1,14 @@
 //jshint esversion:6
 const express = require ("express")
 const app = express ()
-
 const https = require("https")
 
+const apikey="8d5f0776a113ac7e8805634ddbf789e4";
+const city="London";
+const unit="metric";
+
 app.get("/",function(req,res){
-    const url="https://api.openweathermap.org/data/2.5/weather?q=London&appid=8d5f0776a113ac7e8805634ddbf789e4&units=metric";
+    const url="https://api.openweathermap.org/data/2.5/weather?q="+city+"&appid="+apikey+"&units="+unit;
     https.get(url,function(response){
         console.log(response.statusCode);
         response.on("data",function(data){
