@@ -11,7 +11,7 @@ app.get("/",function(req,res){
         response.on("data",function(data){
             const weatherData=JSON.parse(data)
             console.log(weatherData.weather[0].description)
-            res.send("The temp is "+ weatherData.main.temp+" degrees Celcius")
+            res.send("The temp is "+ weatherData.main.temp+" degrees Celcius <br> The description is "+weatherData.weather[0].description)
         })
     })
 })
