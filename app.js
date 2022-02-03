@@ -11,29 +11,26 @@ app.get("/", function (req, res) {
 })
 
 app.post("/", function (req, res) {
+    console.log(req.body.city);
     const apikey = "8d5f0776a113ac7e8805634ddbf789e4";
-    const city = "req.body.city";
+    const city = req.body.city;
     const unit = "metric";
+    const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apikey + "&units=" + unit;
+    https.get(url, function (response) {
+        console.log(response.statusCode);
+        response.on("data", function (data) {
+            const weatherData = JSON.parse(data)
+            const icon = weatherData.weather[0].icon
+            const imgp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
 
-    app.get("/", function (req, res) {
-        const url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apikey + "&units=" + unit;
-        https.get(url, function (response) {
-            console.log(response.statusCode);
-            response.on("data", function (data) {
-                const weatherData = JSON.parse(data)
-                const icon = weatherData.weather[0].icon
-                const imgp = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+            res.write("<p>The temp is " + weatherData.main.temp + " degrees Celcius <br></p>");
+            res.write("<p>The description is " + weatherData.weather[0].description + "</p>");
+            res.write("<img src=" + imgp + ">");
 
-                res.write("<p>The temp is " + weatherData.main.temp + " degrees Celcius <br></p>");
-                res.write("<p>The description is " + weatherData.weather[0].description + "</p>");
-                res.write("<img src=" + imgp + ">");
-
-                res.send()
-            })
+            res.send()
         })
     })
 })
-
 
 
 app.listen(3000, function () {
